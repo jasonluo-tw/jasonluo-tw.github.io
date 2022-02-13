@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tensorflow on JasonLuo&#39;s Blog</title>
+    <link>https://jasonluo.tw/tags/tensorflow/</link>
+    <description>Recent content in tensorflow on JasonLuo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/tags/tensorflow/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nvidia, Cuda安裝</title>
+      <link>https://jasonluo.tw/blog/cuda-install/</link>
+      <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jasonluo.tw/blog/cuda-install/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;update at 2020 2/26 by JasonLuo
+test on Ubuntu 16.04
+install Nvidia Driver 440.59, Cuda 10.1, Cudnn 7.6.5
+compatible with tensorflow-gpu 2.1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;font size=4&gt;
+因為deep learning的套件更新速度很快，有時更新DL套件後相對應的cuda, nvidia driver也需要重新安裝，因此在這邊紀錄一下如何install, uninstall這些東西
+&lt;/font&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

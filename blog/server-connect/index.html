@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/beach.svg">
+
+  <title>
+      設置可以遠端連線的Linux Server 
+  </title>
+  <meta name="description" content="A guideline to set up the connection to my server" />
+  <meta name="author" content="Jason Luo" />
+  <meta name="generator" content="Hugo 0.92.1" /><link
+    rel="stylesheet"
+    href="https://jasonluo.tw/css/styles.min.c6b24dca5772ed9996761d13115f69ceb0a8f94fc33482ad690a4af0d88c827f.css"
+    integrity="sha256-xrJNyldy7ZmWdh0TEV9pzrCo+U/DNIKtaQpK8NiMgn8="
+  />
+  
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    >
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              
+              
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false},
+                  {left: '\\(', right: '\\)', display: false},
+                  {left: '\\[', right: '\\]', display: true}
+              ],
+              
+              throwOnError : false
+            });
+        });
+    </script>
+  
+
+  <meta property="og:title" content="設置可以遠端連線的Linux Server" />
+<meta property="og:description" content="A guideline to set up the connection to my server" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jasonluo.tw/blog/server-connect/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2022-02-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-03T00:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="設置可以遠端連線的Linux Server"/>
+<meta name="twitter:description" content="A guideline to set up the connection to my server"/>
+
+  <meta itemprop="name" content="設置可以遠端連線的Linux Server">
+<meta itemprop="description" content="A guideline to set up the connection to my server"><meta itemprop="datePublished" content="2022-02-03T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-02-03T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2152">
+<meta itemprop="keywords" content="system,tech," />
+</head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
+  <a href="https://jasonluo.tw/" class="capitalize font-extrabold text-2xl">
+    
+    <img src="/beach.png" alt="JasonLuo&#39;s Blog" class="h-8 max-w-full" style="display: inline"/>
+    <span style="padding-left: 3px">JasonLuo&#39;s Blog</span>
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/">Blog</a></li>
+    
+    <li><a href="/page/about/">About</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+    <li><a href="/blog/continual-learning/">Top Post</a></li>
+    
+
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+  <div class="relative max-w-5xl mx-auto px-4">
+    <img src="https://images.unsplash.com/photo-1488229297570-58520851e868?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1169&amp;q=80" class="rounded-lg shadow-sm w-full object-contain" />
+    <div class="absolute top-4 right-8 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+      
+  
+    February 3, 2022
+  
+
+
+    </div>
+  </div>
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">設置可以遠端連線的Linux Server</h1>
+    <h5 class="text-sm flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      Posted on 
+  
+    February 3, 2022
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      5&nbsp;minutes
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      2152&nbsp;words
+      
+    </h5>
+
+    <p> 最近重新開始把自己家裡的桌電當成小型server，所以就有了遠端連線的需求，還記得兩三年前的時候曾經有弄過一次，但這次要弄的時候卻發現忘了很多東西，所以這次就把過程記錄下來，除了分享之外，以後有需要也有文章可以參考。雖然在這個AWS、GCP等雲端服務橫行的時代裡，直接使用他們的服務非常的方便，但仍有自己的桌機server還是一件很酷的事😎，而且也不需要花錢才能使用服務，同時在架設的過程中也可以學到一些事情。</p>
+<blockquote>
+<h2 id="廢話不多說就趕快進入正題吧">廢話不多說，就趕快進入正題吧！</h2>
+</blockquote>
+<hr>
+<h2 id="設定固定ip">設定固定IP</h2>
+<p> 首先，家用網路通常是浮動IP，因此我們需要先設定一組固定IP，這樣才能用同一組IP做登入，不然每次登入時的IP會變來變去。我家的網路是<code>ADSL光世代</code>，中華電信有提供一組固定IP給客戶使用，因此先到<a href="https://csapp.cht.com.tw/CustService/WEB/staticip-web.html">中華電信的網站</a>去做設定，設定完之後應該可以看到以下的畫面
+<img src="https://i.imgur.com/9Qn6UEF.png" style="width: 400px"></p>
+<blockquote>
+<p>設定時間
+[time=Thu, Jan 27, 2022 8:58 PM]</p>
+</blockquote>
+<h2 id="設定pppoe網路連線">設定PPPoE網路連線</h2>
+<p>設定完之後，接下來有兩條路可以走：</p>
+<ol>
+<li>網路線直接連到桌機</li>
+<li>網路數據機先接WIFI分享器後，再從分享器接到桌機</li>
+</ol>
+<blockquote>
+<p>前面的方法比較簡單，只要在Ubuntu裡設定PPPoE之後就結束了，後面那一種則是要在WIFI分享器裡做設定</p>
+</blockquote>
+<h3 id="先說明第一種-ubuntu設定pppoe">先說明第一種 Ubuntu設定PPPoE</h3>
+<ol>
+<li>
+<p>如果沒有PPPoE工具，先安裝</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install net-tools
+sudo apt-get install pppoeconf
+</code></pre></div></li>
+<li>
+<p>設定PPPoE</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo pppoeconf
+</code></pre></div><p>下了這個指令之後會跳出一個視窗，除了帳號和密碼之外，其他都按YES
+在輸入帳號和密碼的地方，要輸入<strong>電信公司給的帳號和密碼</strong>
+這邊以中華電信為例:</p>
+<blockquote>
+<p>帳號: [帳號]@ip.hinet.net
+密碼: [中華電信的密碼]</p>
+</blockquote>
+</li>
+<li>
+<p>撥接(開啟固定IP服務)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo pon dsl-provider
+</code></pre></div><blockquote>
+<p>撥接成功訊息
+Plugin rp-pppoe.so loaed</p>
+</blockquote>
+</li>
+<li>
+<p>之後在command line打<code>ip addr show</code>，在最下面應該可以看到電信公司給的固定IP，如有看到即完成設定。</p>
+</li>
+<li>
+<p>如要中斷連線</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo poff -a
+</code></pre></div></li>
+</ol>
+<ul>
+<li>另外在<code>/etc/ppp</code>目錄下，<code>chap-secrets</code>和<code>pap-secrets</code>兩個檔案裡，可以查到撥接的帳號、密碼。</li>
+<li>設定完之後，<code>/etc/network/interfaces</code>的檔案會被更動</li>
+</ul>
+<h3 id="另一個種是設定wifi分享器">另一個種是設定wifi分享器</h3>
+<p> 除了桌電要接網路之外，同時也想要有WIFI讓其他裝置可以連網，這時候就需要用到WIFI分享器。而當桌機的網路是從WIFI分享器來的時候，設置桌機linux的PPPoE就沒有用了，此時要去設定WIFI分享器的連線方式才行。
+ 這個時候我們可以把wifi分享器比擬成一個公司大樓的總機，裡面各個不同的連接阜想成是大樓裡不同的辦公室，所以當網路訊號(信件)送來時，會先傳到WIFI分享器(總機)，再藉由分享器(總機)來傳遞到正確的辦公室的人的手上。所以網路訊號送過來時，最先接觸到的是WIFI分享器，因此我們要設置分享器中的PPPoE，才會有固定IP。</p>
+<h4 id="wifi分享器的設定">WIFI分享器的設定</h4>
+<p>每個裝置的設定頁面可能會不一樣，而我是用D-Link 819的WIFI分享器，所以以下是D-Link 819分享器的裝置設定:</p>
+<ol>
+<li>
+<p>打開網頁打入192.168.0.1連到分享器的設定網頁</p>
+</li>
+<li>
+<p>找到網路連線的設定畫面選擇PPPoE並輸入帳號、密碼(中華電信給的:XXXXXXXX@ip.hinet.net)，完成設定。</p>
+</li>
+<li>
+<p>以上步驟完成之後即完成固定IP的設置，此時，不管哪個裝置連線之後，顯示的IP位址都會是固定IP的位址。</p>
+</li>
+<li>
+<p>接下來需要把連接阜設定到特定的內網IP，這樣在連線的時候才會連到特定的內網IP
+設定如下圖，公用和私用連接阜都設定成22，22為ssh連線時默認的連接阜，通訊協定選擇TCP或是TCP+UDP都可以</p>
+ <img src="https://i.imgur.com/3WubrL6.png" style="width:600px">
+</li>
+<li>
+<p>再來，我們要設定DHCP保留位址，這樣下次重新啟動WIFI分享器，重新連線的時候，桌機被分配到的內網才會相同，不然內網IP變了，連線的時候就會無法連線。</p>
+ <img src="https://i.imgur.com/X55PQG4.png" style="width:600px">
+</li>
+</ol>
+<br>
+<blockquote>
+<h3 id="到此固定ip就設定好了接下來要設定ssh的連線">到此，固定IP就設定好了，接下來要設定SSH的連線🙂</h3>
+</blockquote>
+<h2 id="ssh網路連線的設定">SSH網路連線的設定</h2>
+<p> 接下來要到Linux Ubuntu上設定SSH連線</p>
+<ol>
+<li>先檢查Ubuntu是否開啟openssh-server的服務，使用<code>ps aux|grep ssh</code>檢查是否有啟動sshd，如有啟動sshd服務可以跳過2, 3, 4步
+<strong>openssh-server是連到你的電腦需要的
+openssh-client則是連出去需要用到的</strong></li>
+<li>檢查是否有安裝openssh-server
+<code>dpkg -l | grep ssh</code>
+如果沒有就要下載
+<code>sudo apt-get install openssh-server</code></li>
+<li>下載完之後啟動服務
+<code>sudo service ssh start</code></li>
+<li>檢查服務是否有啟動
+<code>sudo service ssh status</code></li>
+<li>設定<code>/etc/host.allow</code>和<code>/etc/host.deny</code>限制可以連線的IP位址，hosts.allow的優先順序高於hosts.deny
+e.g.
+<pre tabindex="0"><code># daemon_list : client_list [: command]
+sshd : 192.168.1.100
+ALL: 140.112.*
+vsftpd : 192.168.1.*  # ftp連線設定
+</code></pre></li>
+<li>SSH密鑰的設置
+原先一開始連線是用密碼來做登入，如果換成使用SSH密鑰登入的話，更可以增加安全性
+原本就有ssh key的話，只要把public key加到server的<code>~/.ssh/authorized_keys</code>中即可
+<strong>沒有ssh key的話就要先用<code>ssh-keygen</code>產生一組publick key和private key</strong></li>
+<li>修改<code>/etc/ssh/sshd_config</code>檔案，使其登入方式改變成用SSH key登入
+把檔案中的<code>PasswordAuthentication</code>改成no，<code>PubkeyAuthentication</code>改成yes
+<pre tabindex="0"><code>PasswordAuthentication no
+PubkeyAuthentication yes
+</code></pre></li>
+<li>重新啟動sshd服務
+<code>service sshd restart</code></li>
+</ol>
+<blockquote>
+<h2 id="最後試試看使用筆電登入server能登入的話就成功了">最後，試試看使用筆電登入server，能登入的話就成功了🥳</h2>
+</blockquote>
+<h2 id="some-reference">Some Reference:</h2>
+<ul>
+<li><a href="https://andy6804tw.github.io/2019/01/23/ubuntu-ssh-remote/">openssh-server</a></li>
+<li><a href="https://blog.gtwang.org/linux/linux-ssh-public-key-authentication/">ssh公私鑰設定、連線</a></li>
+<li><a href="https://medium.com/@fortunatemaker2603/ssh-%E9%81%A0%E7%AB%AF%E9%80%A3%E7%B7%9A%E5%9B%9E%E5%AE%B6%E4%B8%AD%E7%9A%84-windows-%E9%9B%BB%E8%85%A6-7e5267ae1e93">遠端連線回Server</a></li>
+<li><a href="https://stevenitlife.blogspot.com/2020/05/ubuntu-pppoe.html">Ubuntu PPPoE連線設定</a></li>
+</ul>
+
+  </article><div class="bg-gray-200 dark:bg-gray-900">
+  <div class="container px-6 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2">Follow me</div>
+      <p class="opacity-60">Now, I work in a weather company to develop ML/DL projects</p>
+    </div>
+    <ul class="flex justify-center gap-4">
+      
+      <li>
+        <a
+          href="https://twitter.com/JasonLu32059153"
+          target="_blank"
+          rel="noopener"
+          aria-label="Twitter"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"
+            />
+          </svg>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="https://www.linkedin.com/in/jasonluo0201/"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <line x1="8" y1="11" x2="8" y2="16" />
+            <line x1="8" y1="8" x2="8" y2="8.01" />
+            <line x1="12" y1="16" x2="12" y2="11" />
+            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+          </svg>
+        </a>
+      </li>
+      
+      
+      
+      <li>
+        <a
+          href="https://github.com/jasonluo-tw"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="https://medium.com/@jason830201"
+          target="_blank"
+          rel="noopener"
+          aria-label="Medium"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M8 9h1l3 3l3 -3h1" />
+            <line x1="8" y1="15" x2="10" y2="15" />
+            <line x1="14" y1="15" x2="16" y2="15" />
+            <line x1="9" y1="9" x2="9" y2="15" />
+            <line x1="15" y1="9" x2="15" y2="15" />
+          </svg>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      <li>
+        <a
+          href="https://www.instagram.com/jasonluo0201/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-instagram"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M10 9l5 3l-5 3z" />
+          </svg>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="https://www.facebook.com/zhangshuo.luo/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-facebook"
+            width="24"
+            height="24"
+            viewBox="200 200 1374.9329 1647.9995"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path transform="translate(264.79995,281.33325)" d="M1365.333 682.667C1365.333 305.64 1059.693 0 682.667 0 305.64 0 0 305.64 0 682.667c0 340.738 249.641 623.16 576 674.373V880H402.667V682.667H576v-150.4c0-171.094 101.917-265.6 257.853-265.6 74.69 0 152.814 13.333 152.814 13.333v168h-86.083c-84.804 0-111.25 52.623-111.25 106.61v128.057h189.333L948.4 880H789.333v477.04c326.359-51.213 576-333.635 576-674.373" fill="#858b9b" />
+            <path transform="translate(264.79995,281.33325)" d="M948.4 880l30.267-197.333H789.333V554.609C789.333 500.623 815.78 448 900.584 448h86.083V280s-78.124-13.333-152.814-13.333c-155.936 0-257.853 94.506-257.853 265.6v150.4H402.667V880H576v477.04a687.805 687.805 0 00106.667 8.293c36.288 0 71.91-2.84 106.666-8.293V880H948.4" fill="#fff" />
+          </svg>
+        </a>
+    </li>
+    
+    </ul>
+  </div>
+</div>
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Copyright © 2022 - Jhang-Shuo Luo · All rights reserved
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+</footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://jasonluo.tw/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const isDark = localStorage.getItem('darkmode');
+  if (isDark && isDark === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script></body>
+</html>

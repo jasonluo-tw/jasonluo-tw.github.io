@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>system on JasonLuo&#39;s Blog</title>
+    <link>https://jasonluo.tw/tags/system/</link>
+    <description>Recent content in system on JasonLuo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 03 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/tags/system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>設置可以遠端連線的Linux Server</title>
+      <link>https://jasonluo.tw/blog/server-connect/</link>
+      <pubDate>Thu, 03 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://jasonluo.tw/blog/server-connect/</guid>
+      <description>最近重新開始把自己家裡的桌電當成小型server，所以就有了遠端連線的需求，還記得兩三年前的時候曾經有弄過一次，但這次要弄的時候卻發現忘了很</description>
+    </item>
+    
+  </channel>
+</rss>

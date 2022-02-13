@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/beach.svg">
+
+  <title>
+      淺談正夯的深度學習 
+  </title>
+  <meta name="description" content="A brief introduction to Deep Learning" />
+  <meta name="author" content="Jason Luo" />
+  <meta name="generator" content="Hugo 0.92.1" /><link
+    rel="stylesheet"
+    href="https://jasonluo.tw/css/styles.min.c6b24dca5772ed9996761d13115f69ceb0a8f94fc33482ad690a4af0d88c827f.css"
+    integrity="sha256-xrJNyldy7ZmWdh0TEV9pzrCo+U/DNIKtaQpK8NiMgn8="
+  />
+  
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    >
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              
+              
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false},
+                  {left: '\\(', right: '\\)', display: false},
+                  {left: '\\[', right: '\\]', display: true}
+              ],
+              
+              throwOnError : false
+            });
+        });
+    </script>
+  
+
+  <meta property="og:title" content="淺談正夯的深度學習" />
+<meta property="og:description" content="A brief introduction to Deep Learning" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jasonluo.tw/blog/deep-intro/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-05-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-31T00:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="淺談正夯的深度學習"/>
+<meta name="twitter:description" content="A brief introduction to Deep Learning"/>
+
+  <meta itemprop="name" content="淺談正夯的深度學習">
+<meta itemprop="description" content="A brief introduction to Deep Learning"><meta itemprop="datePublished" content="2020-05-31T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-05-31T00:00:00+00:00" />
+<meta itemprop="wordCount" content="3653">
+<meta itemprop="keywords" content="DL,tech," />
+</head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
+  <a href="https://jasonluo.tw/" class="capitalize font-extrabold text-2xl">
+    
+    <img src="/beach.png" alt="JasonLuo&#39;s Blog" class="h-8 max-w-full" style="display: inline"/>
+    <span style="padding-left: 3px">JasonLuo&#39;s Blog</span>
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/">Blog</a></li>
+    
+    <li><a href="/page/about/">About</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+    <li><a href="/blog/continual-learning/">Top Post</a></li>
+    
+
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+  <div class="relative max-w-5xl mx-auto px-4">
+    <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80" class="rounded-lg shadow-sm w-full object-contain" />
+    <div class="absolute top-4 right-8 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+      
+  
+    May 31, 2020
+  
+
+
+    </div>
+  </div>
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">淺談正夯的深度學習</h1>
+    <h5 class="text-sm flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      Posted on 
+  
+    May 31, 2020
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      8&nbsp;minutes
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      3653&nbsp;words
+      
+    </h5>
+
+    <h2 id="前言">前言</h2>
+<p> 在2016年3月8日到15日期間，全世界的電腦科學家們甚至是全世界的人們都高度關注的一場世界棋賽，但與之前不同的是，這場世界棋賽並不是一般人與人之間的博奕，而是一場人與機器的世紀大對決。隨著AlphaGO降臨於眾人面前並以4:1戰勝人類最頂尖的棋手之一，開啟了大眾與企業對於人工智慧的熱情，也因此引發了一波人工智慧的熱潮。而在往後的日子中，到處都可以聽到<strong>深度學習</strong>的技術又在某一個領域得到重大的突破，但<strong>深度學習</strong>這個看似很新潮又很酷的東西是什麼玩意呢？它到底又厲害在哪裡呢？為什麼能夠短時間席捲好多領域？</p>
+<h2 id="what-is-deep-learning-">what is deep learning ?</h2>
+<center><img src="https://i.imgur.com/8GkS081.png" width="60%"></center><br>
+<p> 其實如果對這名詞有些好奇的人，去網路上google深度學習的圖片將會查到大量類似如上的圖片，圖片中可以看到一堆圈圈，而這些圈圈之間由很多的線所連接。可能看完上圖大家還是會覺得一頭霧水不知道這個東西到底是什麼，但如果將下圖擺在一起看時就會發現上圖和人類的神經網路有些相似。<br></p>
+<center><img src="https://i.imgur.com/ApbR1PP.png" width="50%" style="margin:auto;"></center><br>
+<p> 對！沒錯，深度學習某一程度其實模仿了人類身體中的神經網絡，圖中的一個一個圈圈代表了一個個神經元，而線則代表了神經元和神經元之間的連接(類似神經中的突觸)。此外，從圖中可以看到這些圈圈有分層，黃色的圈圈為輸入層(Input layer)，中間許多的藍&gt;色圈圈被稱為隱藏層(hidden layer)，最後的紅色圈圈則為輸出層(output layer)，這樣一個架構是現在最基本的深度學習模型。然而，這個模仿人體神經網絡的領域早在1950、1960年代就已經出現，當時這方面相關的研究也被學術界稱為『類神經網路』(Artificial neural network)，在1954年時，弗蘭克羅森布拉特(Frank Rosenblatt)提出『感知機』(Perceptron)的概念，而現在某些書上也可以看到多層感知機(Multi-Layer Perceptron，MLP)其實講的就是同一件事(Dnn)，所以深度學習並不像很多人所想像那樣突然橫空出世，而是已經經過很多時間的醞釀，蟄伏了很長一段時間。</p>
+<h2 id="怎麼以前沒有-現在有">怎麼以前沒有 現在有</h2>
+<p> 看到這邊大家一定會想問，既然這些概念、演算法很早就已經出現了，為什麼現在才
+整個蹦出來出現在大家眼前？其實深度學習能夠發展起來都要歸因於互聯網、大數據以及現
+今電腦強大的運算能力。首先，這些網路要給眾人使用以前要先經過大量的訓練，而這些訓
+練過程中最不可或缺的即是品質良好的數據資料。舉最基本的手寫數字(Mnist)辨識來說，要讓這些機器能夠分辨照片中的數字到底是多少，我們要先讓機器看過許多不一樣的照片並且跟它說照片中的數字到底是多少，這個過程蠻像人類小時候的學習過程。<br></p>
+<img src="https://i.imgur.com/jvSsKm1.png" width="20%">
+<p> 還記得我年代久遠的小時候，爸爸媽媽會給我很多卡片，像是某張卡片上面畫了一顆
+蘋果，然後卡片下面就會寫&quot;蘋果&quot;這兩個字。人們透過這樣幾張的字卡似乎就能很快學會蘋
+果這個東西，下次看到的時候雖然可能跟字卡上的蘋果有些差異，但是往往能正確的指出那
+個就是一顆蘋果。</p>
+<center><img src="https://i.imgur.com/bfcU4c0.png" width="50%"></center>
+<p> 但是如果是利用深度學習的技術時只透過一丁點的資料是沒辦法辨別出巫婆手上的那
+顆蘋果的，其實這也是深度學習遇到的問題，在訓練的時候必須有海量資料的幫忙，網路才
+能夠訓練的很好，也因此在早期難以收集資料集的情況下，類神經網路的技術是很難勝過其
+他傳統的機器學習演算法的。所幸互聯網以及處理大數據的技術的出現，人們在收集資料上
+變得比以前簡單很多。下圖為2009年到2020年IDC預測的數位資料量，可以看到資料的成長是非常的劇烈，幾乎是以指數的方式成長，因此，在未來不會沒有資料可以進行訓練，問題只會變得要不要花時間去收集並管理資料而已。</p>
+<center><img src="https://i.imgur.com/qX0pdPl.png" width="70%"></center>
+<p> 除了在訓練時需要龐大的資料外，電腦的運算能力在早期也是一大難題。在以前只有
+CPU的時代，只要把網路加深幾層或是神經元數加大，就會增加大量的訓練時間，因此要訓&gt;練一個複雜的神經網路往往需要數天、數個禮拜甚至數年。然而，隨著GPU、TPU、叢集(cluster)的出現，大大提昇了電腦的平行運算能力，人們不再像以往需要花大量時間訓練簡單&gt;的網路，同時訓練一個非常複雜的網路也變得較為容易，現在的深度學習研究者如果沒有GPU的話根本不用玩。如果你問我說GPU和CPU的差別在哪，那我會推薦你去看youtube上一個我覺得有趣又短的影片。</p>
+<center><iframe width="600" height="400" src="https://www.youtube.com/embed/-P28LKWTzrI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></center>
+<h2 id="學習方法機器學習">學習方法(機器學習)</h2>
+<p> 一般機器學習領域中大致上可以概括成<strong>三類</strong>學習方式-<strong>監督式學習(Supervised learning)</strong>、<strong>非監督式學習(Unsupervised learning)</strong>、<strong>強化學習(Reinforcement learning)</strong>，還有一種是介於這監督與非監督之間的<strong>半監督式學習(semi-supervised learning)</strong>，在這邊就討論最前面兩種學習方式。</p>
+<h3 id="監督式學習">監督式學習</h3>
+<p> 所謂<strong>監督式學習</strong>就是機器在學習的過程中有正確答案(label data)可以對照。舉例來說，就是大人帶小孩到動物園玩時，大人常常會指著動物跟孩子說這是甚麼樣的動物，小孩子從他看到的這些動物的特徵(feature)中學會辨別動物們，像是看到灰色、很大隻、&gt;長鼻子、大耳朵的就知道會是一隻大象，而有很長的脖子的通常就知道是長頸鹿。同樣的，機器也是這樣藉由反覆看到資料以及答案，從中尋找資料中的一些特徵，進而學會有甚麼樣特徵的資料會得到甚麼樣的答案。然而，在看似和人同樣的學習方式之下，機器所學到的東西往往會和人們學習到的會有所差異，機器常學到一些奇怪的東西導致在判斷的時候會判斷出一些非常奇怪的結果，有興趣的人可以看看以下的影片。</p>
+<center><iframe width="600" height="400" src="https://www.youtube.com/embed/M2IebCN9Ht4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></center><br>
+<h3 id="非監督式學習">非監督式學習</h3>
+<p> 接下來，非監督式學習其實就是在訓練過程中訓練資料沒有答案(No label)，在這個情況下，通常都是使用<strong>分群</strong>的方法將資料進行分類，常見的有k-means、DBSCAN、Hierarchical clustering等等，有一個不錯的網站，它將<a href="https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/">DBSCAN演算法做視覺化的呈現</a>有興趣的可以到這個&gt;網站去看看。</p>
+<p> 除了上述說的<strong>分群</strong>方法之外，近幾年在非監督式學習中出現了一個非常熱門的技
+術叫做<strong>GAN (Generative Adversarial Networks)</strong>，最早由Ian Goodfellow在2014年提&gt;出，這個技術提出後受到大眾的關注，陸續幾年出現了一堆GAN的變形，Cycle GAN、WGAN、
+BEGAN、DRAGAN(我第一次看看成恐龍XD)&hellip;&hellip;以下是摘自gan-zoo的圖，這圖統計了這幾年
+來與GAN相關的論文數量，可以看到2017~2018年與GAN相關的論文數量成長非常驚人。</p>
+<center><img src="https://i.imgur.com/uzv0ccz.png"></center>
+<p>深度學習三巨頭之一 Yann LeCun也對GAN的出現讚譽有加。</p>
+<center><img src="https://i.imgur.com/BRR9hCH.png" width="80%"></center>
+<p> 現在網路上有很多畫風轉移的技術很多就有應用到GAN的技術，利用GAN的技術可以輕
+鬆的把一個照片轉移成梵谷的畫風，或是把一般的馬轉變成斑馬，甚至之前在Reddit上出現
+deepfakes的用戶使用GAN的技術將A片女主角的臉重新換成好萊屋女星的臉，這些噱頭十足&gt;的用途都大大提升了GAN的知名度。</p>
+<h3 id="強化學習">強化學習</h3>
+<p> 所謂的強化學習，指的是讓機器(Agent)與一個虛擬的環境(Environment)互動，機器
+因為環境的狀態而選擇採取某一種行動，而機器會因為這個行動獲得一個分數(Reward)，這
+個分數有可能是正或是負的，同時環境會因為機器採取的行動而改變，環境改變之後機器要
+重新看這個環境之後再根據環境狀態採取行動&hellip;一直循環，而在這些輪迴中機器要想辦法&gt;使獲得的分數(Reward)越高越好。下面這張圖就是強化學習機器與環境互動的圖。</p>
+<center><img src="https://i.imgur.com/cB1W96s.png" width="50%"></center><br>
+<p> 上述的過程很像是打遊戲的過程，也因此強化學習常常被用來讓機器學習玩遊戲或是
+下棋，最有名的例子就是AlphaGO了，下面是一段使用強化學習中的Q-learning的技術讓機&gt;器能夠自己玩打磚塊，從影片中可以看到剛開始，機器就像一個笨蛋一樣，但是過了120分&gt;鐘的訓練之後，機器玩起打磚塊就像一個專家一樣厲害XD</p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/V1eYniJ0Rnk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</center><br>
+<h2 id="結語">結語</h2>
+<p> 這篇文章非常簡單的介紹了深度學習的背景以及機器學習的方法，但其實還有<strong>非常非常</strong>多的東西值得拿出來與大家討論，像是梯度下降、反向傳播、CNN、RNN、seq2seq&hellip;&hellip;，以及這項技術如何被廣泛應用在各個領域之中。像是深度學習往往會與另一個領域結&gt;合，
+像是如果要把聊天機器人的好的話就要對語言學有一些認識，或是想把深度學習應用在文本搜尋系統可能就要對詞向量、tf-idf等要有所了解。如果對這些東西非常有興趣的其實網路上有很多的文章可以看，希望大家能夠在挖掘這些資料海時，能在過程中獲得許多成就感以及快樂～～</p>
+<p><em><strong>最後推薦大家入坑方向XDD</strong></em>
+ 如果對深度學習的歷史、演進或是想了解人工智慧到底會不會毀滅人類的話，推薦大
+家可以去翻翻李開復寫的人工智慧來了，而如果是想了解到底深度學習是怎樣架構的話推薦
+大家去找李弘毅教授的影片來看看，那對機器學習中的數學有興趣的話則是可以看田神在coursera上開的課程。</p>
+<br>
+<h2 id="參考資料">參考資料</h2>
+<ul>
+<li>&lt;人工智慧來了&gt; 李開復</li>
+<li>李弘毅教授講義</li>
+<li>GAN-ZOO</li>
+<li>IDC: The premier global market intelligence firm</li>
+</ul>
+  </article><div class="bg-gray-200 dark:bg-gray-900">
+  <div class="container px-6 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2">Follow me</div>
+      <p class="opacity-60">Now, I work in a weather company to develop ML/DL projects</p>
+    </div>
+    <ul class="flex justify-center gap-4">
+      
+      <li>
+        <a
+          href="https://twitter.com/JasonLu32059153"
+          target="_blank"
+          rel="noopener"
+          aria-label="Twitter"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"
+            />
+          </svg>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="https://www.linkedin.com/in/jasonluo0201/"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <line x1="8" y1="11" x2="8" y2="16" />
+            <line x1="8" y1="8" x2="8" y2="8.01" />
+            <line x1="12" y1="16" x2="12" y2="11" />
+            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+          </svg>
+        </a>
+      </li>
+      
+      
+      
+      <li>
+        <a
+          href="https://github.com/jasonluo-tw"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="https://medium.com/@jason830201"
+          target="_blank"
+          rel="noopener"
+          aria-label="Medium"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M8 9h1l3 3l3 -3h1" />
+            <line x1="8" y1="15" x2="10" y2="15" />
+            <line x1="14" y1="15" x2="16" y2="15" />
+            <line x1="9" y1="9" x2="9" y2="15" />
+            <line x1="15" y1="9" x2="15" y2="15" />
+          </svg>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      <li>
+        <a
+          href="https://www.instagram.com/jasonluo0201/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-instagram"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M10 9l5 3l-5 3z" />
+          </svg>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="https://www.facebook.com/zhangshuo.luo/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-facebook"
+            width="24"
+            height="24"
+            viewBox="200 200 1374.9329 1647.9995"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path transform="translate(264.79995,281.33325)" d="M1365.333 682.667C1365.333 305.64 1059.693 0 682.667 0 305.64 0 0 305.64 0 682.667c0 340.738 249.641 623.16 576 674.373V880H402.667V682.667H576v-150.4c0-171.094 101.917-265.6 257.853-265.6 74.69 0 152.814 13.333 152.814 13.333v168h-86.083c-84.804 0-111.25 52.623-111.25 106.61v128.057h189.333L948.4 880H789.333v477.04c326.359-51.213 576-333.635 576-674.373" fill="#858b9b" />
+            <path transform="translate(264.79995,281.33325)" d="M948.4 880l30.267-197.333H789.333V554.609C789.333 500.623 815.78 448 900.584 448h86.083V280s-78.124-13.333-152.814-13.333c-155.936 0-257.853 94.506-257.853 265.6v150.4H402.667V880H576v477.04a687.805 687.805 0 00106.667 8.293c36.288 0 71.91-2.84 106.666-8.293V880H948.4" fill="#fff" />
+          </svg>
+        </a>
+    </li>
+    
+    </ul>
+  </div>
+</div>
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Copyright © 2022 - Jhang-Shuo Luo · All rights reserved
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+</footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://jasonluo.tw/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const isDark = localStorage.getItem('darkmode');
+  if (isDark && isDark === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script></body>
+</html>

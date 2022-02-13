@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/beach.svg">
+
+  <title>
+      Continual learning 
+  </title>
+  <meta name="description" content="The summary of continual learning in a webinar" />
+  <meta name="author" content="Jason Luo" />
+  <meta name="generator" content="Hugo 0.92.1" /><link
+    rel="stylesheet"
+    href="https://jasonluo.tw/css/styles.min.c6b24dca5772ed9996761d13115f69ceb0a8f94fc33482ad690a4af0d88c827f.css"
+    integrity="sha256-xrJNyldy7ZmWdh0TEV9pzrCo+U/DNIKtaQpK8NiMgn8="
+  />
+  
+  
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    >
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              
+              
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false},
+                  {left: '\\(', right: '\\)', display: false},
+                  {left: '\\[', right: '\\]', display: true}
+              ],
+              
+              throwOnError : false
+            });
+        });
+    </script>
+  
+
+  <meta property="og:title" content="Continual learning" />
+<meta property="og:description" content="The summary of continual learning in a webinar" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jasonluo.tw/blog/continual-learning/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2022-01-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-01-23T00:00:00+00:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Continual learning"/>
+<meta name="twitter:description" content="The summary of continual learning in a webinar"/>
+
+  <meta itemprop="name" content="Continual learning">
+<meta itemprop="description" content="The summary of continual learning in a webinar"><meta itemprop="datePublished" content="2022-01-23T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-01-23T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2883">
+<meta itemprop="keywords" content="DL,tech," />
+</head>
+<body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
+  <a href="https://jasonluo.tw/" class="capitalize font-extrabold text-2xl">
+    
+    <img src="/beach.png" alt="JasonLuo&#39;s Blog" class="h-8 max-w-full" style="display: inline"/>
+    <span style="padding-left: 3px">JasonLuo&#39;s Blog</span>
+    
+  </a>
+  <button class="mobile-menu-button md:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <line x1="4" y1="8" x2="20" y2="8" />
+      <line x1="4" y1="16" x2="20" y2="16" />
+    </svg>
+  </button>
+  <ul class="mobile-menu absolute px-6 pb-6 md:p-0 top-full left-0 w-full md:w-auto md:relative hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 lg:gap-6 bg-white dark:bg-gray-800">
+
+    
+    <li><a href="/">Blog</a></li>
+    
+    <li><a href="/page/about/">About</a></li>
+    
+    <li><a href="/tags">Tags</a></li>
+    
+    <li><a href="/blog/continual-learning/">Top Post</a></li>
+    
+
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="open-search inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+      </span>
+    </li>
+    
+
+    
+    <li class="grid place-items-center">
+      <span class="toggle-dark-mode inline-block cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="12" cy="12" r="3" />
+          <line x1="12" y1="5" x2="12" y2="5.01" />
+          <line x1="17" y1="7" x2="17" y2="7.01" />
+          <line x1="19" y1="12" x2="19" y2="12.01" />
+          <line x1="17" y1="17" x2="17" y2="17.01" />
+          <line x1="12" y1="19" x2="12" y2="19.01" />
+          <line x1="7" y1="17" x2="7" y2="17.01" />
+          <line x1="5" y1="12" x2="5" y2="12.01" />
+          <line x1="7" y1="7" x2="7" y2="7.01" />
+        </svg>
+      </span>
+    </li>
+    
+  </ul>
+</header>
+<main class="flex-1">
+  
+  
+
+  
+  <div class="relative max-w-5xl mx-auto px-4">
+    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80" class="rounded-lg shadow-sm w-full object-contain" />
+    <div class="absolute top-4 right-8 rounded shadow bg-white text-gray-900 dark:bg-gray-900 dark:text-white px-2 py-0.5">
+      
+  
+    January 23, 2022
+  
+
+
+    </div>
+  </div>
+  
+
+  <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark px-4">
+
+    <h1 class="text-2xl font-bold mb-2">Continual learning</h1>
+    <h5 class="text-sm flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <rect x="8" y="15" width="2" height="2" />
+      </svg>
+      Posted on 
+  
+    January 23, 2022
+  
+
+
+      
+        &nbsp;&bull;&nbsp;
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="12" cy="12" r="9" />
+        <polyline points="12 7 12 12 15 15" />
+      </svg>
+      6&nbsp;minutes
+      &nbsp;&bull;
+      <svg xmlns="http://www.w3.org/2000/svg" class="mx-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+        <line x1="3" y1="6" x2="3" y2="19" />
+        <line x1="12" y1="6" x2="12" y2="19" />
+        <line x1="21" y1="6" x2="21" y2="19" />
+      </svg>
+      2883&nbsp;words
+      
+    </h5>
+
+    <h2 id="前言">前言</h2>
+<p> 幾個月前聽了一場有關深度學習的線上演講，那次的演講內容是有關於continual learning，此種學習方法的出現是為了解決現在深度學習模型的一個致命弱點，並提出一些改善的方法，由於此子領域仍算是DL裡非常新的研究課題，所以還有很多值得研究的地方。在這裡我紀錄了一些演講的重點。</p>
+<h2 id="dl的金魚腦">DL的金魚腦</h2>
+<p> 在現今的深度學習中，研究人員發現深度學習模型是有一個非常健忘的金魚腦。當我們訓練了一個模型分辨小貓和小狗之後，接著讓此模型再學習分辨飛機和火車，雖然訓練完的模型學會了如何分辨飛機和火車，但是它會完全忘記如何分辨貓狗，從而導致在辨別貓狗的任務上有非常差的表現。科學家們將此現象稱作<span style="color: red">Catastrophic foretting</span>(災難性或毀滅性的遺忘)，名稱聽起來非常嚴重，但確確實實地指出了現今深度學習非常嚴重的缺陷。而Continual learning(Incremental learning)就是為了解決這問題而出現的。</p>
+<h2 id="為什麼dl會忘記">為什麼DL會忘記</h2>
+<p> 但到底為何會出現Catastrophic forgetting呢？其實從loss function的方向去思考很快就會知道答案了。在不同的任務之下，loss function其實長得很不一樣，當我們在訓練第二個任務的時候，模型是往當下的loss少的方向走，但有可能對於前一項任務來說卻往往是loss變高的地方走，因而造成學會了當下的任務而遺忘之前的任務。</p>
+<center><img src="https://i.imgur.com/EHos8XZ.png" style="width:600px"></center>
+From https://arxiv.org/pdf/2104.07286v1.pdf
+<h2 id="continual-learning的規則及方法">Continual learning的規則及方法</h2>
+<p>現在科學家們列了幾條規則，要符合以下的規定才算是Continual learning</p>
+<ol>
+<li>Learn one task after the other</li>
+<li>Without storing(many) data from previous tasks</li>
+<li>Without memory footprint growing(significantly) over time</li>
+<li>Without (completely) forgetting old tasks</li>
+</ol>
+<p>而學者們主要提出的方法可以分為以下幾種：</p>
+<ul>
+<li>Regularization based: <strong>Lwf, EBLL, EWC, SI, MAS, IMM, &hellip;</strong>
+<ul>
+<li>Data-focused regularization</li>
+<li>Model-focused regularization</li>
+</ul>
+</li>
+<li>Rehearsal/Replay: <strong>iCaRL, DGR, GEM, &hellip;</strong></li>
+<li>Architecture-based: <strong>PackNet, progressive nets, HAT, &hellip;</strong></li>
+</ul>
+<h2 id="regularization-based">Regularization-based</h2>
+<p> 在Regularization-based中，主要的方式就是在loss function中增加regularization term去限制模型的weights或是在學習新任務時，限制預測前一個任務的結果(output)不要因為學習新任務而有太大的差距。所以可以分為data-focused和model-focused的regularization，前者是針對模型的output去做限制，而後者則是針對模型的weight去做限制。</p>
+<h3 id="1-data-focused-regularization">1. Data-focused regularization</h3>
+<p> 此方法是當新任務的input經過Feature Extraction後，除了通過新任務的classification layer之外，同時也通過舊的(上一個任務)classification layer，得到一個output，將此output與舊model(update前一個)的output算一個loss(e.g. l2 loss)，以這樣的方式可以讓model在學習新的任務的同時，也仍能保持在舊任務的表現。因為需要有舊model的output，所以在訓練階段的時候會有兩個model，一個是舊的，一個是更新參數之後的model。
+<br>
+<img src="https://i.imgur.com/SPG0FXT.png" style="width:600px"></p>
+<br>
+<p><strong>pros: Simple method; good results for related tasks</strong>
+<strong>cons: Poor results for unrelated tasks</strong>
+<strong>Relevant paper:<a href="https://arxiv.org/pdf/1606.09282.pdf">Li &amp; Hoiem 2016</a></strong></p>
+<h3 id="2-model-focused-regularization">2. Model-focused regularization</h3>
+<p> 此方法是針對模型的weight去做regularization，在更新參數的同時，要確保參數一下子不會變動太多，假如一次更新變動太多的話，會使得model容易忘記舊任務(亦即weight會往新任務loss低的地方走，但並不會考慮舊任務的loss)，所以在loss function的第二項中，我們加入了一個regularization term，防止參數一下變化太多。同時我們並不會要求模型中每個weight的regularization一樣，因為不同參數對於不同任務的重要性不同，因此用一個$\lambda_k$來決定各個參數的重要性。</p>
+<center><img src="https://i.imgur.com/5zJZ7A3.png" style="width:500px"></center>
+<br>
+<p> 然而，如何計算\(\lambda_k\)呢？講者提出了兩個paper，第一個是Elastic weight consolidation(EWC)。EWC計算fisher information matrix，並考慮所有前面的task去計算出\(\lambda_k\)。利用EWC的方法可以找到在兩個任務中都還不錯的解(下圖)，在這邊並不會提到細節，如想知道詳細的過程的話就請參考paper囉。
+<br></p>
+<center><img src="https://i.imgur.com/N16rpbx.png" style="width:400px"></center>
+<br>
+<p><strong>pros: Agnostic to architecture; Good results empirically</strong>
+<strong>cons: Only valid locally; Need to store importance weights</strong></p>
+<p> 而另一個方法則是Memory aware synapses。此方法只須使用前一個task的weight來計算\(\lambda_k\)，並使用gradient的改變量來計算\(\lambda_k\)</p>
+<p><strong>pros: Agnostic to architecture; Leverages data &amp; output</strong>
+<strong>cons: Only valid locally</strong></p>
+<h3 id="比較">比較:</h3>
+<ul>
+<li>EWC
+<ul>
+<li>Indiv. penalty for each previous task \(\sum_k\sum_{i&lt;n}\lambda_{k}^{n-i}(\theta_k^n-\theta_k^{n-1})^2\)</li>
+<li>Fisher information matrix for \(\lambda_k\)</li>
+</ul>
+</li>
+<li>Memory aware synapses
+<ul>
+<li>Considers only the previous task \(\sum_k{\lambda_k(\theta_k^n-\theta_k^{n-1})^2}\)</li>
+<li>Change in gradients for \(\lambda_k\)</li>
+</ul>
+</li>
+</ul>
+<h3 id="相關的paper">相關的paper:</h3>
+<ol>
+<li>Elastic weight consolidation [Kirkpatrick et al., 2017]</li>
+<li>Memory aware synapses [Aljundi et al., 2018]</li>
+<li>Path integral/Synaptic Intelligence [Zenke et al., 2017]</li>
+<li>Moment matching [Lee et al., 2017]</li>
+<li>Pathnet [Fernando et al., 2017]</li>
+</ol>
+<h2 id="rehearsalreplay">Rehearsal/Replay</h2>
+<p> 此種方法是紀錄前幾個任務的一些samples或是利用generative model去產生之前任務的samples，藉由這種紀錄或產生sample的方式，在訓練當前任務的時候，可以同時把之前任務的samples一起做訓練，以達到增量學習的效果。然而，要記錄多少的samples、如何挑選samples以及如何使用他們來達到最大的效果，就是此種方法要探討的問題。</p>
+<h3 id="1-icarl-rebuffi-et-al-2017">1. iCaRL [Rebuffi et al. 2017]</h3>
+<ol>
+<li>挑選靠近每個class平均的位置的samples</li>
+<li>Selects samples that are closest to the feature mean of each class</li>
+<li>Use knowledge distillation loss
+<a href="https://arxiv.org/abs/1503.02531">Distilling the Knowledge in a Neural Network</a></li>
+<li>The problem is split into:
+<ol>
+<li>learning features</li>
+<li>using NCM(like nearest neighbor) classifier</li>
+</ol>
+</li>
+</ol>
+<p><strong>pros: Clever use of available memory</strong>
+<strong>cons:
+1. potential issues with storing data, e.g., privacy
+2. Limited by the memory capacity(the more the better)</strong></p>
+<h3 id="2-deep-generative-replay">2. Deep Generative Replay</h3>
+<p> 此種方法是利用generator來紀錄前面任務的訊息，由generator負責產生input data，而另一個模型則負責做預測或分類，為solver(classifier)。由generator和solver組成一個<strong>Scholar</strong>，此Scholar會在每一輪的task中更新。</p>
+<img src="https://i.imgur.com/B1V6RNP.png" style="width:200px">
+<h4 id="大致上的訓練流程">大致上的訓練流程:</h4>
+<ul>
+<li>在task t的時候，我們會訓練一個新的Scholar
+<ul>
+<li>
+<p>對於generator的訓練資料</p>
+<ul>
+<li>當前任務下(task t)的data</li>
+<li>前一個任務(task t-1)中generator產生出來的data
+<img src="https://i.imgur.com/Bvmi3S9.png" style="width:500px"></li>
+</ul>
+</li>
+<li>
+<p>對於solver的訓練資料</p>
+<ul>
+<li>當前任務下(task t)的pair data</li>
+<li>前一個任務(task t-1)中generator產生出來的data以及通過Solver後的data
+<img src="https://i.imgur.com/s6jWTyp.png" style="width:500px"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>pros: avoids memory issues</strong>
+<strong>cons:
+1. accumulation of errors
+2. no control over the class of the generated samples</strong></p>
+<h3 id="相關的paper-1">相關的paper:</h3>
+<ol>
+<li>iCaRL <a href="https://arxiv.org/pdf/1611.07725.pdf">Rebuffi et al. 2017</a></li>
+<li>Deep Generative Replay <a href="https://arxiv.org/pdf/1705.08690.pdf">Shin et al. 2017</a></li>
+</ol>
+<h2 id="architectured-based">Architectured-based</h2>
+<h3 id="packnet-mallya--lazebnik-2017httpsopenaccessthecvfcomcontent_cvpr_2018papersmallya_packnet_adding_multiple_cvpr_2018_paperpdf">PackNet <a href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Mallya_PackNet_Adding_Multiple_CVPR_2018_paper.pdf">Mallya &amp; Lazebnik 2017</a></h3>
+<p>此方法是利用weight pruning的概念來達到continual learning(incremental learning)。如下圖所示，訓練完某個model之後，利用pruning的方法把模型修小，剩下的weights就可以拿來訓練下一個任務，訓練完之後再繼續pruning，一直反覆此操作來學習不同的任務。此方法雖然可以達到很高的準確度，但必須事前知道有多少任務學習，才能分配好各個任務所需要的weights，不然學習到後面，後面的任務可能就沒剩下多少的weights可供訓練。</p>
+<img src="https://i.imgur.com/5rEQOr5.png">
+<p><strong>pros: fixed memory consumption, avoids forgetting</strong>
+<strong>cons: needs the total number of tasks</strong></p>
+<h2 id="a-comparative-analysis">A comparative analysis</h2>
+<p>最後提供幾個可用於continal learning(incremental learning)的dataset以及各種方法的比較結果，如有興趣想知道更詳細的分析可以參考Lange et al.2020的<a href="https://arxiv.org/pdf/1909.08383.pdf">A continual learning survey</a>這篇結果。</p>
+<h3 id="dataset">dataset:</h3>
+<ul>
+<li>TinyImagenet: small, balanced, class-incremental</li>
+<li>iNaturalist: large-scale, unbalanced, task-incremental</li>
+</ul>
+<img src="https://i.imgur.com/2s3fhC0.png">
+<h3 id="各種方法的比較結果tinyimagenet">各種方法的比較結果(TinyImagenet)</h3>
+<h4 id="regularization--architecture-based">Regularization &amp; Architecture based</h4>
+<img src="https://i.imgur.com/mfv20Do.png" style="width:1000px">
+<h4 id="rehearsal--replay-based">Rehearsal &amp; Replay based</h4>
+<img src="https://i.imgur.com/EpjcOfM.png" style="width:1000px">
+<h3 id="takeaways">Takeaways</h3>
+<ul>
+<li>Rehearsal/replay based methods only pay off when storing significant amount of exemplars</li>
+<li>PackNet results in no-forgetting and produces top results</li>
+<li>MAS more robust than EWC</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=A7DDk2euG2A">Video course</a></li>
+<li><a href="https://arxiv.org/pdf/1606.09282.pdf">Li &amp; Hoiem 2016 - data regularization</a></li>
+<li><a href="https://arxiv.org/pdf/1612.00796.pdf">Elastic weight consolidation</a></li>
+<li><a href="https://arxiv.org/pdf/1711.09601.pdf">Memory aware synapses</a></li>
+<li><a href="https://arxiv.org/pdf/1611.07725.pdf">iCaRL</a></li>
+<li><a href="https://arxiv.org/pdf/1705.08690.pdf">Deep Generative Replay</a></li>
+<li><a href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Mallya_PackNet_Adding_Multiple_CVPR_2018_paper.pdf">PackNet</a></li>
+<li><a href="https://arxiv.org/pdf/1909.08383.pdf">A continual learning survey</a></li>
+</ul>
+  </article><div class="bg-gray-200 dark:bg-gray-900">
+  <div class="container px-6 py-12 mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div>
+      <div class="text-2xl font-bold mb-2">Follow me</div>
+      <p class="opacity-60">Now, I work in a weather company to develop ML/DL projects</p>
+    </div>
+    <ul class="flex justify-center gap-4">
+      
+      <li>
+        <a
+          href="https://twitter.com/JasonLu32059153"
+          target="_blank"
+          rel="noopener"
+          aria-label="Twitter"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"
+            />
+          </svg>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="https://www.linkedin.com/in/jasonluo0201/"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <line x1="8" y1="11" x2="8" y2="16" />
+            <line x1="8" y1="8" x2="8" y2="8.01" />
+            <line x1="12" y1="16" x2="12" y2="11" />
+            <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+          </svg>
+        </a>
+      </li>
+      
+      
+      
+      <li>
+        <a
+          href="https://github.com/jasonluo-tw"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+            />
+          </svg>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="https://medium.com/@jason830201"
+          target="_blank"
+          rel="noopener"
+          aria-label="Medium"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M8 9h1l3 3l3 -3h1" />
+            <line x1="8" y1="15" x2="10" y2="15" />
+            <line x1="14" y1="15" x2="16" y2="15" />
+            <line x1="9" y1="9" x2="9" y2="15" />
+            <line x1="15" y1="9" x2="15" y2="15" />
+          </svg>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      <li>
+        <a
+          href="https://www.instagram.com/jasonluo0201/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-instagram"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M10 9l5 3l-5 3z" />
+          </svg>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a
+          href="https://www.facebook.com/zhangshuo.luo/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+          class="p-2 inline-block rounded-full border border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 cursor-pointer transition-colors dark:text-gray-600 dark:hover:border-gray-300 dark:hover:text-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-facebook"
+            width="24"
+            height="24"
+            viewBox="200 200 1374.9329 1647.9995"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path transform="translate(264.79995,281.33325)" d="M1365.333 682.667C1365.333 305.64 1059.693 0 682.667 0 305.64 0 0 305.64 0 682.667c0 340.738 249.641 623.16 576 674.373V880H402.667V682.667H576v-150.4c0-171.094 101.917-265.6 257.853-265.6 74.69 0 152.814 13.333 152.814 13.333v168h-86.083c-84.804 0-111.25 52.623-111.25 106.61v128.057h189.333L948.4 880H789.333v477.04c326.359-51.213 576-333.635 576-674.373" fill="#858b9b" />
+            <path transform="translate(264.79995,281.33325)" d="M948.4 880l30.267-197.333H789.333V554.609C789.333 500.623 815.78 448 900.584 448h86.083V280s-78.124-13.333-152.814-13.333c-155.936 0-257.853 94.506-257.853 265.6v150.4H402.667V880H576v477.04a687.805 687.805 0 00106.667 8.293c36.288 0 71.91-2.84 106.666-8.293V880H948.4" fill="#fff" />
+          </svg>
+        </a>
+    </li>
+    
+    </ul>
+  </div>
+</div>
+
+    </main><footer class="container p-6 mx-auto flex justify-between items-center">
+  <span class="text-sm font-light">
+    
+    Copyright © 2022 - Jhang-Shuo Luo · All rights reserved
+    
+  </span>
+  <span onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-1 cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 15l-6 -6l-6 6h12" />
+    </svg>
+  </span>
+</footer>
+
+<div class="search-ui absolute top-0 left-0 w-full h-full bg-white dark:bg-gray-800 hidden">
+  <div class="container max-w-3xl mx-auto p-12">
+    <div class="relative">
+      <div class="my-4 text-center text-2xl font-bold">Search</div>
+
+      <span class="p-2 absolute right-0 top-0 cursor-pointer close-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </span>
+    </div>
+
+    <input type="search" class="py-2 px-3 w-full dark:text-black border dark:border-transparent"
+      placeholder="Enter search query" />
+
+    <div class="search-results text-lg font-medium my-4 hidden">Results</div>
+    <ul class="search-list my-2">
+
+    </ul>
+
+    <div class="no-results text-center my-8 hidden">
+      <div class="text-xl font-semibold mb-2">No results found</div>
+      <p class="font-light text-sm">Try adjusting your search query</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="https://jasonluo.tw/js/scripts.min.js"></script>
+
+
+
+
+
+
+<script>
+  
+  const darkmode = document.querySelector('.toggle-dark-mode');
+  function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('darkmode', 'light')
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('darkmode', 'dark')
+    }
+  }
+  if (darkmode) {
+    darkmode.addEventListener('click', toggleDarkMode);
+  }
+
+  const isDark = localStorage.getItem('darkmode');
+  if (isDark && isDark === 'dark') {
+    toggleDarkMode();
+  }
+</script>
+
+
+<script>
+  const mobileMenuButton = document.querySelector('.mobile-menu-button')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  }
+  if(mobileMenu && mobileMenuButton){
+    mobileMenuButton.addEventListener('click', toggleMenu)
+  }
+</script></body>
+</html>
