@@ -34,7 +34,7 @@ jobs:
       run: npm install
       
     - name: Setup public
-      run: git worktree add -B master public origin/master
+      run: git worktree add -B main public origin/main
       
     - name: Delete public
       run: rm -rf public/*
