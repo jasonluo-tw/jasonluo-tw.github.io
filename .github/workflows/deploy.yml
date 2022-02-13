@@ -33,14 +33,14 @@ jobs:
     - name: Setup theme dependency
       run: npm install
       
-    - name: Setup public
-      run: git worktree add -B main public origin/main
+   # - name: Setup public
+   #   run: git worktree add -B main public origin/main
       
-    - name: Delete public
-      run: rm -rf public/*
+    #- name: Delete public
+    #  run: rm -rf public/*
       
     - name: Build new hugo public
-      run: hugo -D --gc
+      run: hugo
       
     - name: Deploy to the main branch
       uses: peaceiris/actions-gh-pages@v3
