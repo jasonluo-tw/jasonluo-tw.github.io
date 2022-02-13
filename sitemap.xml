@@ -2,45 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jasonluo.tw/page/about/</loc>
+    <loc>https://jasonluo-tw.github.io/page/about/</loc>
     <lastmod>2022-02-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/</loc>
+    <loc>https://jasonluo-tw.github.io/</loc>
     <lastmod>2022-02-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/page/</loc>
+    <loc>https://jasonluo-tw.github.io/page/</loc>
     <lastmod>2022-02-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/blog/</loc>
+    <loc>https://jasonluo-tw.github.io/blog/</loc>
     <lastmod>2022-02-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/tags/system/</loc>
+    <loc>https://jasonluo-tw.github.io/tags/system/</loc>
     <lastmod>2022-02-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/tags/</loc>
+    <loc>https://jasonluo-tw.github.io/tags/</loc>
     <lastmod>2022-02-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/tags/tech/</loc>
+    <loc>https://jasonluo-tw.github.io/tags/tech/</loc>
     <lastmod>2022-02-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/blog/server-connect/</loc>
+    <loc>https://jasonluo-tw.github.io/blog/server-connect/</loc>
     <lastmod>2022-02-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/blog/continual-learning/</loc>
+    <loc>https://jasonluo-tw.github.io/blog/continual-learning/</loc>
     <lastmod>2022-01-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/tags/dl/</loc>
+    <loc>https://jasonluo-tw.github.io/tags/dl/</loc>
     <lastmod>2022-01-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/blog/cuda-install/</loc>
+    <loc>https://jasonluo-tw.github.io/blog/cuda-install/</loc>
     <lastmod>2020-06-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/tags/tensorflow/</loc>
+    <loc>https://jasonluo-tw.github.io/tags/tensorflow/</loc>
     <lastmod>2020-06-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/blog/deep-intro/</loc>
+    <loc>https://jasonluo-tw.github.io/blog/deep-intro/</loc>
     <lastmod>2020-05-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jasonluo.tw/categories/</loc>
+    <loc>https://jasonluo-tw.github.io/categories/</loc>
   </url>
 </urlset>

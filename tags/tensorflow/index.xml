@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tensorflow on JasonLuo&#39;s Blog</title>
-    <link>https://jasonluo.tw/tags/tensorflow/</link>
+    <link>https://jasonluo-tw.github.io/tags/tensorflow/</link>
     <description>Recent content in tensorflow on JasonLuo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 07 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/tags/tensorflow/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo-tw.github.io/tags/tensorflow/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nvidia, Cuda安裝</title>
-      <link>https://jasonluo.tw/blog/cuda-install/</link>
+      <link>https://jasonluo-tw.github.io/blog/cuda-install/</link>
       <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://jasonluo.tw/blog/cuda-install/</guid>
+      <guid>https://jasonluo-tw.github.io/blog/cuda-install/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;update at 2020 2/26 by JasonLuo
 test on Ubuntu 16.04
