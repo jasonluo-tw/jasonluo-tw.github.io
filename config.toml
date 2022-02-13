@@ -1,4 +1,4 @@
-baseurl = "https://jasonluo-tw.github.io"
+baseurl = "https://jasonluo.tw"
 metaDataFormat = "yaml"
 title = "JasonLuo's Blog"
 theme = "blist"
