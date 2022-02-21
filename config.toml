@@ -71,6 +71,9 @@ disqusShortname = "jasonluo"
   #  languageName = "Test Language"
 
 [params]
+  # for og:img 
+  images = ['self_cover.jpg']
+
   # Enable the darkmode toggle in header
   darkModeToggle = true
   
