@@ -83,6 +83,7 @@ disqusShortname = "jasonluo"
   # Custom copyright - optional
   copyright = "Copyright © 2022 - Jhang-Shuo Luo · All rights reserved"
   favicon = "/beach.svg"
+  animatePhoto = "/self_cover450x300.jpeg"
 
   # Color for the intro details and social links block, not applicable for dark mode
   # Supported values: Any color from TailwindCSS default colors
