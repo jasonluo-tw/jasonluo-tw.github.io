@@ -428,12 +428,18 @@
 <script>
     var renderer, scene, camera, ww, wh, particles;
     
-    ww = window.innerWidth * 0.464;
-    wh = ww / 3 * 2;
-    if(ww >= 450){
-        ww = 450;
-        wh = 300;
+    if(window.innerWidth >= 768){
+        ww = window.innerWidth * 0.464;
+        wh = ww / 3 * 2;
+        if(ww >= 450){
+            ww = 450;
+            wh = 300;
+        }
+    }else{
+        ww = window.innerWidth * 0.8;
+        wh = ww / 3 * 2;
     }
+
     var centerVector = new THREE.Vector3(0, 0, 0);
     speed = 10;
     isMouseDown = false;
@@ -470,14 +476,16 @@
     	
     	
         
-        canvas.width = 450;
-        canvas.height = 300;
+        
+        
+        canvas.width = ww
+        canvas.height = wh
     
     	var ctx = canvas.getContext("2d");
-    	ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, 450, 300);
+    	ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, ww, wh);
     
     	
-    	return ctx.getImageData(0, 0, 450, 300);
+    	return ctx.getImageData(0, 0, ww, wh);
     };
     
     var drawTheMap = function () {
@@ -532,14 +540,17 @@
     };
     
     var onResize = function () {
-    	
-    	
-        ww = window.innerWidth * 0.464;
-        wh = ww / 3 * 2;
-        if(ww >= 450){
-            ww = 450;
-            wh = 300;
-        }
+        if(window.innerWidth >= 768){
+            ww = window.innerWidth * 0.464;
+            wh = ww / 3 * 2;
+            if(ww >= 450){     
+                ww = 450;
+                wh = 300;
+            }       
+        }else{
+            ww = window.innerWidth * 0.8;  
+            wh = ww / 3 * 2;
+        }     
 
     	renderer.setSize(ww, wh);
     	camera.left = ww / -2;
