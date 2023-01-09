@@ -71,7 +71,7 @@
   <meta itemprop="name" content="Continual learning">
 <meta itemprop="description" content="The summary of continual learning in a webinar"><meta itemprop="datePublished" content="2022-01-23T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-01-23T00:00:00+00:00" />
-<meta itemprop="wordCount" content="2883"><meta itemprop="image" content="https://jasonluo.tw/self_cover.jpg"/>
+<meta itemprop="wordCount" content="2884"><meta itemprop="image" content="https://jasonluo.tw/self_cover.jpg"/>
 <meta itemprop="keywords" content="DL,tech," />
 </head>
 <body class="dark:bg-gray-800 dark:text-white relative flex flex-col min-h-screen"><header class="container flex justify-between md:justify-between gap-4 flex-wrap p-6 mx-auto relative">
@@ -190,14 +190,14 @@
         <line x1="12" y1="6" x2="12" y2="19" />
         <line x1="21" y1="6" x2="21" y2="19" />
       </svg>
-      2883&nbsp;words
+      2884&nbsp;words
       
     </h5>
 
     <h2 id="前言">前言</h2>
 <p> 幾個月前聽了一場有關深度學習的線上演講，那次的演講內容是有關於continual learning，此種學習方法的出現是為了解決現在深度學習模型的一個致命弱點，並提出一些改善的方法，由於此子領域仍算是DL裡非常新的研究課題，所以還有很多值得研究的地方。在這裡我紀錄了一些演講的重點。</p>
 <h2 id="dl的金魚腦">DL的金魚腦</h2>
-<p> 在現今的深度學習中，研究人員發現深度學習模型是有一個非常健忘的金魚腦。當我們訓練了一個模型分辨小貓和小狗之後，接著讓此模型再學習分辨飛機和火車，雖然訓練完的模型學會了如何分辨飛機和火車，但是它會完全忘記如何分辨貓狗，從而導致在辨別貓狗的任務上有非常差的表現。科學家們將此現象稱作<span style="color: red">Catastrophic foretting</span>(災難性或毀滅性的遺忘)，名稱聽起來非常嚴重，但確確實實地指出了現今深度學習非常嚴重的缺陷。而Continual learning(Incremental learning)就是為了解決這問題而出現的。</p>
+<p> 在現今的深度學習中，研究人員發現深度學習模型是有一個非常健忘的金魚腦。當我們訓練了一個模型分辨小貓和小狗之後，接著讓此模型再學習分辨飛機和火車，雖然訓練完的模型學會了如何分辨飛機和火車，但是它會完全忘記如何分辨貓狗，從而導致在辨別貓狗的任務上有非常差的表現。科學家們將此現象稱作<span style="color: red">Catastrophic forgetting</span>(災難性或毀滅性的遺忘)，名稱聽起來非常嚴重，但確確實實地指出了現今深度學習非常嚴重的缺陷。而Continual learning(Incremental learning)就是為了解決這問題而出現的。</p>
 <h2 id="為什麼dl會忘記">為什麼DL會忘記</h2>
 <p> 但到底為何會出現Catastrophic forgetting呢？其實從loss function的方向去思考很快就會知道答案了。在不同的任務之下，loss function其實長得很不一樣，當我們在訓練第二個任務的時候，模型是往當下的loss少的方向走，但有可能對於前一項任務來說卻往往是loss變高的地方走，因而造成學會了當下的任務而遺忘之前的任務。</p>
 <center><img src="https://i.imgur.com/EHos8XZ.png" style="width:600px"></center>
