@@ -12,7 +12,7 @@ thumbnail: https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb
 
 <!--more-->
 ## DL的金魚腦
-&emsp;在現今的深度學習中，研究人員發現深度學習模型是有一個非常健忘的金魚腦。當我們訓練了一個模型分辨小貓和小狗之後，接著讓此模型再學習分辨飛機和火車，雖然訓練完的模型學會了如何分辨飛機和火車，但是它會完全忘記如何分辨貓狗，從而導致在辨別貓狗的任務上有非常差的表現。科學家們將此現象稱作<span style="color: red">Catastrophic foretting</span>(災難性或毀滅性的遺忘)，名稱聽起來非常嚴重，但確確實實地指出了現今深度學習非常嚴重的缺陷。而Continual learning(Incremental learning)就是為了解決這問題而出現的。
+&emsp;在現今的深度學習中，研究人員發現深度學習模型是有一個非常健忘的金魚腦。當我們訓練了一個模型分辨小貓和小狗之後，接著讓此模型再學習分辨飛機和火車，雖然訓練完的模型學會了如何分辨飛機和火車，但是它會完全忘記如何分辨貓狗，從而導致在辨別貓狗的任務上有非常差的表現。科學家們將此現象稱作<span style="color: red">Catastrophic forgetting</span>(災難性或毀滅性的遺忘)，名稱聽起來非常嚴重，但確確實實地指出了現今深度學習非常嚴重的缺陷。而Continual learning(Incremental learning)就是為了解決這問題而出現的。
 
 ## 為什麼DL會忘記
 &emsp;但到底為何會出現Catastrophic forgetting呢？其實從loss function的方向去思考很快就會知道答案了。在不同的任務之下，loss function其實長得很不一樣，當我們在訓練第二個任務的時候，模型是往當下的loss少的方向走，但有可能對於前一項任務來說卻往往是loss變高的地方走，因而造成學會了當下的任務而遺忘之前的任務。
