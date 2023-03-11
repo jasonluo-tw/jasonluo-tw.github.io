@@ -3,16 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jasonluo.tw/blog/</loc>
-    <lastmod>2022-03-17T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jasonluo.tw/tags/dl/</loc>
+    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jasonluo.tw/</loc>
-    <lastmod>2022-03-17T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jasonluo.tw/tags/</loc>
-    <lastmod>2022-03-17T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jasonluo.tw/tags/tech/</loc>
-    <lastmod>2022-03-17T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jasonluo.tw/blog/chatgpt/</loc>
+    <lastmod>2023-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jasonluo.tw/tags/web/</loc>
     <lastmod>2022-03-17T00:00:00+00:00</lastmod>
@@ -33,9 +39,6 @@
     <lastmod>2022-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jasonluo.tw/blog/continual-learning/</loc>
-    <lastmod>2022-01-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jasonluo.tw/tags/dl/</loc>
     <lastmod>2022-01-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jasonluo.tw/blog/cuda-install/</loc>

@@ -5,7 +5,16 @@
     <link>https://jasonluo.tw/tags/dl/</link>
     <description>Recent content in DL on JasonLuo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 23 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/tags/dl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/tags/dl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What is ChatGPT</title>
+      <link>https://jasonluo.tw/blog/chatgpt/</link>
+      <pubDate>Sat, 11 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jasonluo.tw/blog/chatgpt/</guid>
+      <description>(本文由ChatGPT測試生成) ChatGPT是一種被訓練來進行自然語言對話的語言模型。它的訓練方式是使用大量的文本資料，例如對話日誌、文章</description>
+    </item>
+    
     <item>
       <title>Continual learning</title>
       <link>https://jasonluo.tw/blog/continual-learning/</link>
