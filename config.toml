@@ -15,7 +15,7 @@ disqusShortname = "jasonluo"
     languageName = "English"
     [languages.en.params]
       introTitle = "Hey! I'm Jason Luo"
-      introSubtitle = "A 28 y/o developer who loves dogs, sharing & blogging"
+      introSubtitle = "A 29 y/o developer who loves dogs, sharing & blogging"
       introDy1      = "is interested in machine learning"
       introPhoto = "/self_cover.jpg"
       logo = "/beach.png"
@@ -36,7 +36,7 @@ disqusShortname = "jasonluo"
 
     [[languages.en.menu.main]]
         name = "Top Post"
-        url = "blog/continual-learning/"
+        url = "blog/ai_conference/"
         weight = 4
 
   #[languages.de]
