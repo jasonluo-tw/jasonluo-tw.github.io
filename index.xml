@@ -5,7 +5,19 @@
     <link>https://jasonluo.tw/</link>
     <description>Recent content on JasonLuo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 11 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI演講：What we see &amp; What we value</title>
+      <link>https://jasonluo.tw/blog/ai_conference/</link>
+      <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jasonluo.tw/blog/ai_conference/</guid>
+      <description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;Some reflection of today&amp;rsquo;s AI conference at 2023/03/23&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;難得能實體去參加李飛飛教授的演講，覺得真的是很幸運！&lt;/p&gt;
+&lt;p&gt; 當年的ImageNet比賽就是史丹佛的李飛飛教授發起的，也因為這個比賽導致了2012年AlexNet的出現，進而帶動了整個深度學習的發展，然後就一路持續發展到現在令人驚嘆的chatGPT、GPT4。可想而知，她在AI領域的貢獻功不可沒。
+ Anyway，原本只是單純抱著去見AI界名人的想法，沒想卻聽到了很多除了技術之外的東西，所以想說自己思考整理之後，紀錄一下幾個自己覺得重要的想法下來。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>What is ChatGPT</title>
       <link>https://jasonluo.tw/blog/chatgpt/</link>
