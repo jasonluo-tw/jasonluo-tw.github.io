@@ -17,13 +17,13 @@ thumbnail: https://images.unsplash.com/photo-1572373785011-af1fe5216e15?ixlib=rb
 
 <!--more-->
 
-1. **Agumentation, not replacement.**
+1. **Augmentation, not replacement**
 
 &emsp;由於去年生成式AI的爆炸性成長(包括了圖像生成的DALL-E2、Midjourney，到後來年底的ChatGPT以及今年的GPT4)，很多人開始擔心未來的工作是否會被AI取代，但飛飛教授認為這些AI的出現是增強了人類的生產力及效率，並不是來取代人類的。另一個與會者iKala執行長Sega，也提出了相同的看法。他認為AI並不會取代整個工作，而是一個解構的過程。把一個工作流程解構之後，就會發現在在某些部分會加速人們的工作效率，但在其他部分卻可能需要花更多心思處理。
 
-AI should strive to aument and enhance humans, not replace humans.
+AI should strive to augment and enhance humans, not replace humans.
 
-2. **Fairness, ethic and privacy.**
+2. **Fairness, ethic and privacy**
 
 &emsp;教授在這個演講中也提到了這幾個議題。這幾個議題在過去其實並不是那麼受人重視(以前大家只顧著自己的model能力強不強XD)，但自從AI白人生成事件、DeepFake犯罪事件、還有把黑人辨識成大猩猩等事件之後，人們意識到AI的fairness, ethic是一個很重要的研究方向。現實世界中存在很多bias，如果沒有稍加注意其實訓練數據中也很容易會產生具有bias的資料，進而催生具有bias的AI模型。在AI影響力越來越大的情況下，如何確保人們安全地使用AI，且不會造成隱私不經意洩露的問題，將會是未來很多研究機構或公司在發表AI模型之前，需要花費心思反覆思考和測試的問題。
 
@@ -54,6 +54,6 @@ AI should strive to aument and enhance humans, not replace humans.
 Technology itself is harmless and neutral. 
 It is us that determine its goodness and badness.
 ```
-希望未來在發展技術的同時，能有更多道德價值層面的討論，能把AI的使用導引到更好的一面，這樣的未來才值得人們的期待吧！
+希望未來在發展技術的同時，能有更多道德價值層面的討論，把AI的使用導引到更好的一面，這樣的未來才值得人們的期待吧！
 
 ![](https://i.imgur.com/enHXsSx.jpg)
