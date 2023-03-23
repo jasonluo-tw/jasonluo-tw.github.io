@@ -19,7 +19,9 @@ thumbnail: https://images.unsplash.com/photo-1572373785011-af1fe5216e15?ixlib=rb
 
 1. **Agumentation, not replacement.**
 
-&emsp;由於去年生成式AI的爆炸性成長(包括了圖像生成的DALL-E2、Midjourney，到後來年底的ChatGPT以及今年的GPT4)，很多人開始擔心未來的工作是否會被AI取代，但飛飛教授認為這些AI的出現是增強了人類的生產力及效率，並不是來取代人類的。另一個與會者iKala執行長Sega，也提出了相同的看法。他認為AI並不會取代整個工作，而是一個解構的過程。把一個工作流程解構之後，就會發現在在某些部分會加速人們的工作效率，但在其他部分卻可能需要花更多心思處理。AI should strive to aument and enhance humans, not replace humans.
+&emsp;由於去年生成式AI的爆炸性成長(包括了圖像生成的DALL-E2、Midjourney，到後來年底的ChatGPT以及今年的GPT4)，很多人開始擔心未來的工作是否會被AI取代，但飛飛教授認為這些AI的出現是增強了人類的生產力及效率，並不是來取代人類的。另一個與會者iKala執行長Sega，也提出了相同的看法。他認為AI並不會取代整個工作，而是一個解構的過程。把一個工作流程解構之後，就會發現在在某些部分會加速人們的工作效率，但在其他部分卻可能需要花更多心思處理。
+
+AI should strive to aument and enhance humans, not replace humans.
 
 2. **Fairness, ethic and privacy.**
 
@@ -38,7 +40,6 @@ thumbnail: https://images.unsplash.com/photo-1572373785011-af1fe5216e15?ixlib=rb
 5. **OpenAI? closeAI?**
 
 &emsp;歐，最後來吐槽一點，AI能有現在快速的發展，open community的風氣絕對是很重要的因素。以往大家都樂意分享自己的研究結果甚至分享source codes和訓練好的model，比如Google的Transformer, BERT等，但openai最近發表的chatGPT、GPT4卻都保留了訓練細節、模型架構。原本說好的open越來越不open，很多網友都戲稱說應該要改名成closeAI了。或許越來越成熟的AI，也代表越來越具有商業價值，站在業界的角度或許能理解這個不open的做法，但這樣是否會帶來越來越close的風氣呢？可能未來大公司在發展AI的過程中，會傾向保留更多細節而不公開吧?
-   抱怨完畢XDD
 
 <br>
 
