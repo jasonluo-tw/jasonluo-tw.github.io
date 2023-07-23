@@ -21,7 +21,7 @@ disqusShortname = "jasonluo"
       logo = "/beach.png"
     [[languages.en.menu.main]]
         name = "Blog"
-        url = "/"
+        url = "/blog/"
         weight = 1
 
     [[languages.en.menu.main]]
@@ -36,7 +36,7 @@ disqusShortname = "jasonluo"
 
     [[languages.en.menu.main]]
         name = "Top Post"
-        url = "blog/ai_conference/"
+        url = "blog/ai_limit/"
         weight = 4
 
   #[languages.de]
