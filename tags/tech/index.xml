@@ -5,7 +5,17 @@
     <link>https://jasonluo.tw/tags/tech/</link>
     <description>Recent content in tech on JasonLuo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 11 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/tags/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/tags/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>隨筆 - 現今AI模型的限制</title>
+      <link>https://jasonluo.tw/blog/ai_limit/</link>
+      <pubDate>Sun, 23 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jasonluo.tw/blog/ai_limit/</guid>
+      <description>&lt;p&gt; 繼上次在Threads介紹現今的AI已可以做到理解各種資料的輸入(文字、圖像、語音&amp;hellip;)，並且能夠給予很流暢的回覆，幾乎沒什麼文法錯誤、句子也通順。除此之外，幾個月前微軟發表了一篇論文(&lt;a href=&#34;https://arxiv.org/abs/2303.12712&#34;&gt;Sparks of Artificial General Intelligence: Early experiments with GPT-4&lt;/a&gt;)，聲稱GPT4已經具備AGI的能力。
+ 雖然自從chatGPT推出之後讓大家為之震驚，但其無所不能的外表之下卻還有很多的問題等待被解決。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>What is ChatGPT</title>
       <link>https://jasonluo.tw/blog/chatgpt/</link>
