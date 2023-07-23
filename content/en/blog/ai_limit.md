@@ -7,6 +7,7 @@ date: 2023-07-23
 thumbnail: https://images.unsplash.com/photo-1518749031467-bb37f48aee10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
 ---
 &emsp;繼上次在Threads介紹現今的AI已可以做到理解各種資料的輸入(文字、圖像、語音...)，並且能夠給予很流暢的回覆，幾乎沒什麼文法錯誤、句子也通順。除此之外，幾個月前微軟發表了一篇論文([Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/abs/2303.12712))，聲稱GPT4已經具備AGI的能力。
+<br>
 &emsp;雖然自從chatGPT推出之後讓大家為之震驚，但其無所不能的外表之下卻還有很多的問題等待被解決。
 <!--more-->
 
