@@ -5,7 +5,16 @@
     <link>https://jasonluo.tw/tags/dl/</link>
     <description>Recent content in DL on JasonLuo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 23 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/tags/dl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jasonluo.tw/tags/dl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用深度學習來預測極短期降雨</title>
+      <link>https://jasonluo.tw/blog/ai_nowcast/</link>
+      <pubDate>Wed, 24 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://jasonluo.tw/blog/ai_nowcast/</guid>
+      <description>&lt;p&gt; 自2012以來，由於深度學習在影像辨識上的巨大成功，人們開始將深度學習應用在許多的領域上，從電腦視覺、自然語言處理、語音辨識、推薦系統、蛋白質結構預測等，各個領域都可以看到深度學習(AI)的蹤跡。不過，我們卻很少聽到AI與氣象的結合，這次我們就來講AI在極短期降雨預報上的應用。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>隨筆 - 現今AI模型的限制</title>
       <link>https://jasonluo.tw/blog/ai_limit/</link>
