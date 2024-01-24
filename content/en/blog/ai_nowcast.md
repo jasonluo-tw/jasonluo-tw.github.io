@@ -20,8 +20,10 @@ thumbnail: https://images.unsplash.com/photo-1519692933481-e162a57d6721?q=80&w=2
 
 ***如下圖，利用兩張連續的雷達回波，分別是18:50、19:00，就可以推斷出當下19:00降雨的移動情形，之後再利用平流(外延的方式)預報未來短時的降雨。***
 
-<img src="https://i.imgur.com/uGiKIEO.png" style="width:45%">
-<img src="https://i.imgur.com/sntvWS0.png" style="width:45%">
+<center>
+<img src="https://i.imgur.com/uGiKIEO.png" style="width:45%; display:inline-block">
+<img src="https://i.imgur.com/sntvWS0.png" style="width:45%; display:inline-block">
+</center>
 
 利用上述兩張雷達回波，藉由**光流法**計算出下圖的移動向量(motion vector)
 <center><img src="https://i.imgur.com/Oqz1t1e.png" style="width:60%"></center>
@@ -64,7 +66,6 @@ thumbnail: https://images.unsplash.com/photo-1519692933481-e162a57d6721?q=80&w=2
 &emsp;不管是Unet或是ConvLSTM等不同的模型架構皆會產生**模糊的預測結果**。為了改善這個現象，DeepMind在2021年的論文嘗試使用conditional GAN來訓練模型並取得不錯的成果。他們的模型架構相比上述兩者要來得複雜許多。整個模型可以分成generator, spatial discriminator跟temporal discriminator，下圖為整個模型的架構圖。
 
 <center><img src="https://i.imgur.com/kTnZ9uz.png" style="width: 80%"></center>
-<br>
 
 &emsp;這個模型有一個令人值得關注的地方是它可以做probabilistic forecast。因為input是random的normal distribution(上圖中的Latent Conditioning Stack)，所以使用相同的雷達回波當輸入，可以sample出不一樣的預測結果，可以做到probabilistic nowcasting。
 
