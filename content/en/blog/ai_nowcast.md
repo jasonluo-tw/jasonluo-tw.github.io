@@ -73,7 +73,7 @@ thumbnail: https://images.unsplash.com/photo-1519692933481-e162a57d6721?q=80&w=2
 從比較中可以看出Seq2Seq(沒有使用GAN訓練方式)的模型會產生出模糊的預測，而DGMR有使用GAN的方式做訓練，可以看出預測結果會比較真實。
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QveEN31gkRY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="80%" height="315" src="https://www.youtube.com/embed/QveEN31gkRY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </center>
 
 ## 小結語
