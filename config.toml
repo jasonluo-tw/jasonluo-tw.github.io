@@ -15,8 +15,8 @@ disqusShortname = "jasonluo"
     languageName = "English"
     [languages.en.params]
       introTitle = "Hey! I'm Jason Luo"
-      introSubtitle = "A 29 y/o developer who loves dogs, sharing & blogging"
-      introDy1      = "is interested in machine learning"
+      introSubtitle = "A 30 y/o guy from Taiwan! I'm interested in tech & science such as AI, weather, crypto... I love scuba diving, traveling and dogs"
+      introDy1      = "is interested in AI"
       introPhoto = "/self_cover.jpg"
       logo = "/beach.png"
     [[languages.en.menu.main]]

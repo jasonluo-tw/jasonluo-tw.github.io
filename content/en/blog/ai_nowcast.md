@@ -15,25 +15,19 @@ thumbnail: https://images.unsplash.com/photo-1519692933481-e162a57d6721?q=80&w=2
 <center>
 <img src="https://i.imgur.com/TggdNMT.png"></img>
 </center>
-<br>
 
 &emsp;光流法，就是利用照片中光影明暗的變化來推斷物體移動的速度，利用兩張連續(時間間隔短)的照片或圖片，再使用光流方程式及一個假設(兩個方程式但有三個未知數，所以用了一個假設來確定解)來求解出照片中的物體及方向。而在天氣的領域中，我們可以利用[雷達的觀測](https://www.cwa.gov.tw/V8/C/W/OBS_Radar.html)來測到空中的水滴，我們就可以利用連續兩張的雷達回波圖結合光流法來推估現在降雨的移動情形。
 
 ***如下圖，利用兩張連續的雷達回波，分別是18:50、19:00，就可以推斷出當下19:00降雨的移動情形，之後再利用平流(外延的方式)預報未來短時的降雨。***
 
-<img src="https://i.imgur.com/uGiKIEO.png" style="width:50%">
-
-<img src="https://i.imgur.com/sntvWS0.png" style="width: 50%">
-<br>
-<br>
+<img src="https://i.imgur.com/uGiKIEO.png" style="width:45%">
+<img src="https://i.imgur.com/sntvWS0.png" style="width:45%">
 
 利用上述兩張雷達回波，藉由**光流法**計算出下圖的移動向量(motion vector)
-<center><img src="https://i.imgur.com/Oqz1t1e.png" style="width:70%"></center>
-<br>
+<center><img src="https://i.imgur.com/Oqz1t1e.png" style="width:60%"></center>
 
 有了motion vector之後，我們就可以將雷達回波(可以想成是觀測到的雨滴)進行外延，而得到未來降雨的走向。
-<center><img src="https://i.imgur.com/AvVWWoz.gif" style="width:80%"></center>
-
+<center><img src="https://i.imgur.com/AvVWWoz.gif" style="width:60%"></center>
 
 ## 傳統光流法的限制
 &emsp;雖然使用光流法做出的預報在非常短的時間之內有不錯的預報結果，算出來的評價分數(Threat Score)也蠻高的，但實際上在應用時仍會遇到許多的問題。像是預報出來的降雨不真實，實際看預報時會發現降雨好像只有平移而沒有增強或減弱，因為光流法只有推估出降雨的速度，但強度隨時間的變化卻無法推估出來，因此導致在預報短時間增強或減弱的降雨時(e.g.夏季的午後雷雨)，會報的很差。
