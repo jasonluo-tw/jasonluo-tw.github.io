@@ -166,8 +166,10 @@
 </center>
 <p> 光流法，就是利用照片中光影明暗的變化來推斷物體移動的速度，利用兩張連續(時間間隔短)的照片或圖片，再使用光流方程式及一個假設(兩個方程式但有三個未知數，所以用了一個假設來確定解)來求解出照片中的物體及方向。而在天氣的領域中，我們可以利用<a href="https://www.cwa.gov.tw/V8/C/W/OBS_Radar.html">雷達的觀測</a>來測到空中的水滴，我們就可以利用連續兩張的雷達回波圖結合光流法來推估現在降雨的移動情形。</p>
 <p><em><strong>如下圖，利用兩張連續的雷達回波，分別是18:50、19:00，就可以推斷出當下19:00降雨的移動情形，之後再利用平流(外延的方式)預報未來短時的降雨。</strong></em></p>
-<img src="https://i.imgur.com/uGiKIEO.png" style="width:45%">
-<img src="https://i.imgur.com/sntvWS0.png" style="width:45%">
+<center>
+<img src="https://i.imgur.com/uGiKIEO.png" style="width:45%; display:inline-block">
+<img src="https://i.imgur.com/sntvWS0.png" style="width:45%; display:inline-block">
+</center>
 <p>利用上述兩張雷達回波，藉由<strong>光流法</strong>計算出下圖的移動向量(motion vector)</p>
 <center><img src="https://i.imgur.com/Oqz1t1e.png" style="width:60%"></center>
 <p>有了motion vector之後，我們就可以將雷達回波(可以想成是觀測到的雨滴)進行外延，而得到未來降雨的走向。</p>
@@ -197,7 +199,6 @@
 <h3 id="dgmr">DGMR</h3>
 <p> 不管是Unet或是ConvLSTM等不同的模型架構皆會產生<strong>模糊的預測結果</strong>。為了改善這個現象，DeepMind在2021年的論文嘗試使用conditional GAN來訓練模型並取得不錯的成果。他們的模型架構相比上述兩者要來得複雜許多。整個模型可以分成generator, spatial discriminator跟temporal discriminator，下圖為整個模型的架構圖。</p>
 <center><img src="https://i.imgur.com/kTnZ9uz.png" style="width: 80%"></center>
-<br>
 <p> 這個模型有一個令人值得關注的地方是它可以做probabilistic forecast。因為input是random的normal distribution(上圖中的Latent Conditioning Stack)，所以使用相同的雷達回波當輸入，可以sample出不一樣的預測結果，可以做到probabilistic nowcasting。</p>
 <p> 以下是幾個模型的比較，包括了筆者自己訓練的DGMR、沒有使用GAN training的模型(Seq2Seq)以及經過一些調整的開源專案(Rainymotion)。
 從比較中可以看出Seq2Seq(沒有使用GAN訓練方式)的模型會產生出模糊的預測，而DGMR有使用GAN的方式做訓練，可以看出預測結果會比較真實。</p>
